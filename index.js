@@ -44,13 +44,21 @@ client.on('message', async (message) => {
         case 'deploy':
             if (message.author.id !== client.application?.owner.id) return;
 
-            const data = {
+            const tttdata = {
                 name: 'ttt',
                 description: 'Starts a Tic Tac Toe Game!',
             };
 
-            const command = await client.guilds.cache.get('752330520028774410')?.commands.create(data);
-            console.log(command);
+            await client.guilds.cache.get(process.env.GUILD)?.commands.create(tttdata);
+
+            const pingdata = {
+                name: 'ping',
+                description: 'Responds with pong!',
+            };
+
+            await client.guilds.cache.get(process.env.GUILD)?.commands.create(pingdata);
+
+            message.reply('Commands deployed!');
 
             break;
     }
@@ -60,7 +68,7 @@ client.on('interaction', async (interaction) => {
     if (interaction.isCommand()) {
         switch (interaction.commandName) {
             case 'ping':
-                await interaction.reply('Pong!');
+                await interaction.reply(`Pong! Up for ${auroMs.relativeTime(client.uptime)}`);
                 break;
 
             case 'ttt':
@@ -93,6 +101,7 @@ client.on('interaction', async (interaction) => {
             tttGame = defaulttttGame;
             return;
         }
+
         if (xTurn) {
             let splitID = interaction.customID.split(',');
             if (tttGame[splitID[0]][splitID[1]] === '⬛') {
@@ -124,7 +133,7 @@ client.on('interaction', async (interaction) => {
             new MessageButton().setCustomID('2,2').setEmoji(tttGame[2][2]).setStyle('PRIMARY'),
         ]);
 
-        // AAAAAAAAAAAAAAAA this is so bad
+        // FDM
         /*  */ if (tttGame[0][0] === '❌' && tttGame[0][1] === '❌' && tttGame[0][2] === '❌') {
             // ﹉
             await interaction.update(`${xTurn ? 'O' : 'X'} wins!`, { components: [row1, row2, row3] });
