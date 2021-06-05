@@ -1,0 +1,18 @@
+{
+    "name": "discord-tic-tac-toe",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "nodemon index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "auro-ms-conversion": "^1.2.0",
+        "discord.js": "^13.0.0-dev.cbd7f2b9aa44a9240947ed716d0e72257ac499f7",
+        "dotenv": "^10.0.0",
+        "nodemon": "^2.0.7"
+    }
+}
